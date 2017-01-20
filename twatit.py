@@ -20,4 +20,4 @@ grid = grid.Grid("recent.JPEG", pix_multi=pix_multis[randint(0,2)])
 grid.n_pass()
 grid.save("out.JPEG")
 
-twatapi.post_image("out.JPEG", ["#mosaic", "#mosaicshapes", tag])
+twatapi.post_image("out.JPEG", ["#mosaic", "#mosaicshapes", "#art", "#mosaicart" tag])
