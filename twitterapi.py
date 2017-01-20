@@ -14,5 +14,6 @@ class TwitterAPI(object):
         auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
         self.api = tweepy.API(auth)
 
-    def post_image(self, img_path):
-        self.api.update_with_media(img_path, status="#mosaic")
+    def post_image(self, img_path, hashtags):
+        import pdb; pdb.set_trace()
+        self.api.update_with_media(img_path, status= " ".join(hashtags))
