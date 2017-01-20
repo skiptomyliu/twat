@@ -15,7 +15,7 @@ img_url, tag = flickapi.get_recent()
 print img_url
 urllib.urlretrieve(img_url, "recent.JPEG")
 
-pix_multis = [".01", ".014", ".019"]
+pix_multis = [".01", ".014", ".02"]
 grid = grid.Grid("recent.JPEG", pix_multi=pix_multis[randint(0,2)])
 grid.n_pass()
 grid.save("out.JPEG")
