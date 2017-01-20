@@ -15,5 +15,4 @@ class TwitterAPI(object):
         self.api = tweepy.API(auth)
 
     def post_image(self, img_path, hashtags):
-        import pdb; pdb.set_trace()
         self.api.update_with_media(img_path, status= " ".join(hashtags))
