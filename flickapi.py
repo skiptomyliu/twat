@@ -3,6 +3,7 @@ import flickr_api
 from flickr_api import Walker, Photo
 import config
 import time
+from random import randint
 
 class FlickAPI(object):
 
@@ -12,7 +13,6 @@ class FlickAPI(object):
     def get_recent(self):
         for i in range(5):
             photo = Photo.getRecent()[0]
-            print photo.getInfo()['safety_level']
             if photo.getInfo()['safety_level'] == '0':
                 if 'Large' in photo.getSizes():
                     tag = ""
@@ -23,12 +23,18 @@ class FlickAPI(object):
             time.sleep(5)
 
     def get_photos(self):
+        random_tags = ['sunset', 'animals', 'portrait', 
+            'beach', 'sunrise', 'sport', 'water', 'summer', 
+            'winter', 'spring', 'bird']
 
-        w = Walker(Photo.search, tags="sunset")
-        # import pdb; pdb.set_trace()
-        for photo in w[:2]:
-            print photo.title  
-            print photo.getSizes()['Large']['source']
-            # import pdb; pdb.set_trace()
+        walker = Walker(Photo.search, tags=random_tags[randint(0, len(random_tags)-1)])
+        photos = walker._curr_list
+        for i in range(5):
+            idx = randint(0, len(photos)-1)
+            photo = photos[idx]
+            if photo.getInfo()['safety_level'] == '0':
+                if 'Large' in photo.getSizes():
+                    return photo.getSizes()['Large']['source']
 
-
+                print 'No Large'
+            time.sleep(5)
